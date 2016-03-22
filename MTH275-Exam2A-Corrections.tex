@@ -1,5 +1,6 @@
 \documentclass{article}
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{amsfonts}
 \usepackage{array}
 
@@ -76,22 +77,22 @@
         Which shows that b can be expressed as a linear combination of Ax and thus has a solution and is consistent.
         \vspace{0.5cm}
         % (b)
-      \item TRUE or FALSE: Every column of the product AB is a lienar combination of the rows of B.
+      \item TRUE or FALSE: Every column of the product AB is a linear combination of the columns of A.
         \vspace{0.5cm}
         \par
-        TRUE: Expanding on the last question, Because b can be expressed as the linear combination of Ax in the more general case any matrix A that is $n \times m$ matrix can be multiplied by any matrix B $m \times z$ and we can express its output as the linear combination of the columns of matrix A and the rows of matrix B just by taking the elements of the second matrix B as scalors multiplied by the columns of the first matrix A and we are allowed to do this based on the defintion of matrix multiplication.
+        TRUE: Expanding on the last question, Because b can be expressed as the linear combination of Ax in the more general case any matrix A that is $n \times m$ matrix can be multiplied by any matrix B $m \times z$ and we can express its output as the linear combination of the columns of matrix A and the rows of matrix B and we are allowed to do this based on the defintion of matrix multiplication. Which shows that the linear combinaiton of the rows of A.
         \vspace{0.5cm}
         % (c)
       \item TRUE or FALSE: Every row of the product AB is a linear combination of the rows of B.
         \vspace{0.5cm}
         \par
-        TRUE: Based of the previous two question and the defintion of matrix multiplication we can reveres the process by taking the elements of matrix a as scalors and multipling it by the rows of matrix B which shows that the row product of AB is the linear combination of the rows of B
+        TRUE: Based of the previous two question and the defintion of matrix multiplication we can use the same process by taking the columns of matrix A and multipling it by the rows of matrix B which shows that the row product of AB is the linear combination of the rows of B
         \vspace{0.5cm}
         % (d)
       \item TRUE or FALSE: The size of the product AB is $10 \times 10$
         \vspace{0.5cm}
         \par
-        TRUE: When you multiply two matrices the product of those two matrices is the columns of the first matrix by the rows of the second matrix. If you take the matrix A $10 \times 13$ and B $13 \times 10$ and you multiply them togther you get a matrix that is $10 \times 10$
+        TRUE: When you multiply two matrices the dimention of the new matrix is the columns of the first matrix by the rows of the second matrix. If you take the matrix A $10 \times 13$ and B $13 \times 10$ and you multiply them togther you get a matrix that is $10 \times 10$
         \vspace{0.5cm}
         % (e)
       \item TRUE or FALSE: The system Ax=b is consistent for every right hand side b if and only if the rank of A is 10.
@@ -103,22 +104,25 @@
       \item TRUE or FALSE: The system BAx=b has a unique solution if and only if A and B are full rank.
         \vspace{0.5cm}
         \par
-        TRUE: Because the full rank of B and A can only be 10 means that if B was not full rank there would be a case one of the column above 10 would be zero thus not allowing A solution.
+        TRUE: This is true because A and B are full rank that when they are multiplied together you get a matrix of $10 \times 10$ which can be row reduced to the idenity matrix which means that any value of b can be represented by setting x = b.
         \vspace{0.5cm}
         % (g)
       \item TRUE or FALSE: If the system Ax=b has a solution, it has infinitely many solution.
         \vspace{0.5cm}
         \par
+        TRUE: This is true because A is $10 \times 13$ and its max rank is 10 so there is at least 3 dependent columns in the matrix which means that if there is at least one solution then there is infinantly many solutions.
         \vspace{0.5cm}
         % (h)
-      \item TRUE or FALSE: If the rank of A is 10, then A has 10 columns that are lienarly independent.
+      \item TRUE or FALSE: If the rank of A is 10, then A has 10 columns that are linarly independent.
         \vspace{0.5cm}
         \par
+        TRUE: Because the rank is 10 no column is dependent on the other therefore they are linearly independent
         \vspace{0.5cm}
         % (i)
-      \item TRUE or FALSE: If A has 10 columns that are lienarly independent, then the rank of A is 10.
+      \item TRUE or FALSE: If A has 10 columns that are linarly independent, then the rank of A is 10.
         \vspace{0.5cm}
         \par
+        TRUE: By the definition of linearly independent if A has 10 columns that are linarly independent then the rank of A is 10.
         \vspace{0.5cm}
     \end{enumerate}
 
@@ -136,6 +140,137 @@
     Assume that the growth is quadratic and find the least squares fit for the data. (Hint: let t be time with t = 4 represent the year 2004.)
     \par
     Your solution is graded half on the numerics and half on the quality of the presentation. You must explain, in complete English sentenses, what you do and why you do it.
+    \par
+    Let registration be modeled by the following equations  
+    \begin{center}
+      p(t)=$\alpha t^2$ + $\beta t$ + $\omega$
+    \end{center}
+    And t is representing the year starting with t=4 representing 2004
+    \par
+    With this we can construct are equations for the quadratic formulas
+    \begin{equation}
+      $\alpha (4)^2$ + $\beta (4)$ + $\omega$ = 237.2
+    \end{equation}
+    \begin{equation}
+      $\alpha (5)^2$ + $\beta (5)$ + $\omega$ = 241.2
+    \end{equation}
+    \begin{equation}
+      $\alpha (6)^2$ + $\beta (6)$ + $\omega$ = 244.2
+    \end{equation}
+    \begin{equation}
+      $\alpha (7)^2$ + $\beta (7)$ + $\omega$ = 247.4
+    \end{equation}
+    \begin{equation}
+      $\alpha (8)^2$ + $\beta (8)$ + $\omega$ = 248.2
+    \end{equation}
+    \par
+    Using these equations we can construct the matrices to be solved in the format of Ax=b
+    \[
+      A = 
+      \begin{bmatrix}
+        4^2 & 4 & 1 \\
+        5^2 & 5 & 1 \\
+        6^2 & 6 & 1 \\
+        7^2 & 7 & 1 \\
+        8^2 & 8 & 1 
+      \end{bmatrix}
+      x = 
+      \begin{bmatrix}
+        \alpha \\
+        \beta \\
+        \omega
+      \end{bmatrix}
+      b = 
+      \begin{bmatrix}
+        237.2 \\
+        241.2 \\
+        244.2 \\
+        247.4 \\
+        248.2 
+      \end{bmatrix}
+    \]
+    \par
+    Using the sum of squares of errors equation we need to solve the normal equation $A^tAx=A^tb$
+    \[
+      \begin{bmatrix}
+        16 & 25 & 36 & 49 & 64 \\
+        4 & 5 & 6 & 7 & 8 \\
+        1 & 1 & 1 & 1 & 1
+      \end{bmatrix}
+      \begin{bmatrix}
+        4^2 & 4 & 1 \\
+        5^2 & 5 & 1 \\
+        6^2 & 6 & 1 \\
+        7^2 & 7 & 1 \\
+        8^2 & 8 & 1 
+      \end{bmatrix}
+      \begin{bmatrix}
+        \alpha \\
+        \beta \\
+        \omega
+      \end{bmatrix}
+      = 
+      \begin{bmatrix}
+        16 & 25 & 36 & 49 & 64 \\
+        4 & 5 & 6 & 7 & 8 \\
+        1 & 1 & 1 & 1 & 1
+      \end{bmatrix}
+      \begin{bmatrix}
+        237.2 \\
+        241.2 \\
+        244.2 \\
+        247.4 \\
+        248.2 
+      \end{bmatrix}
+    \]
+    \par
+    Applying matrix multiplication to the equation we get
+    \[
+      \begin{bmatrix}
+        8674 & 1260 & 190 \\
+        1260 & 190 & 30 \\
+        190 & 30 & 5
+      \end{bmatrix}
+      \begin{bmatrix}
+        \alpha \\
+        \beta \\
+        \omega
+      \end{bmatrix}
+      = 
+      \begin{bmatrix}
+        46623.8 \\
+        7337.4 \\
+        1218.2
+      \end{bmatrix}
+    \]
+    \par
+    solving for x we can row reduce using gaussian eliminaiton and we get the following
+    \[
+      \begin{bmatrix}
+        8674 & 1260 & 190 & 46623.8 \\
+        1260 & 190 & 30 & 7337.4 \\
+        190 & 30 & 5 & 1218.2
+      \end{bmatrix}
+      \thicksim
+      \begin{bmatrix}
+        1 & 0 & 0 & -0.4429 \\
+        0 & 1 & 0 & 8.1343 \\
+        0 & 0 & 1 & 211.6629
+      \end{bmatrix}
+      = 
+      \begin{bmatrix}
+        \alpha \\
+        \beta \\
+        \omega
+      \end{bmatrix}
+    \]
+    \par
+    Therefore we can construct the equation to be
+
+    \begin{center}
+      p(t)=$-0.4429 t^2$ + $8.1343 t$ + $211.6629$
+    \end{center}
+  
   \item We will imagine here that we are dealing with matrices of sizes in the millions but are displaying the technique on small matrices. you are given that A = LU for the folowing matrices
     \[
       L = 
