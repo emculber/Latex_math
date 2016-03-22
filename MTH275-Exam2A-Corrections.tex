@@ -1,0 +1,591 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{array}
+
+\begin{document}
+
+\title{Math275 Linear Algebra Exam 2-A}
+\author{Erik Culberson}
+
+\maketitle
+
+\begin{enumerate}
+  \item Note: -4 for a wrong answer. For each question, circle TRUE or FALSE. No explanations required. Assume A is a 10 x 13 matrix of non-zero integers, with the corresponding appropriate sizes for vecotors x and b. Assume that B is a 13 x 10 matrix of non-zero integers.
+    \begin{enumerate}
+        % (a)
+      \item TRUE or FALSE: The system Ax=b is consistent if and only if b can be expressed as a linear combinations of the columns of A.
+        \vspace{0.5cm}
+        \par
+        TRUE: When you take the columns of A which is a $10 \times 13$ matrix and multiply it by another matrix x of size $13 \times 1$ you can express matrix x as a scalor using the rows of x multiply by the columns of A as definied by the definition of matrix multiplication. If you take the following matrix.
+        \[
+          \begin{bmatrix}
+            a_{11} & a_{12} & a_{13} & \dots  & a_{113} \\
+            a_{21} & a_{22} & a_{23} & \dots  & a_{213} \\
+            \vdots & \vdots & \vdots & \ddots & \vdots \\
+            a_{101} & a_{102} & a_{103} & \dots  & a_{1013}
+          \end{bmatrix}
+          \begin{bmatrix}
+            x_{1} \\
+            x_{2} \\
+            \vdots \\
+            x_{10}
+          \end{bmatrix}
+          =
+          \begin{bmatrix}
+            b_{1} \\
+            b_{2} \\
+            \vdots \\
+            b_{10}
+          \end{bmatrix}
+        \]
+        \par
+        Is the same as saying 
+        \[
+          x_1
+          \begin{bmatrix}
+            a_{11} \\
+            a_{21} \\
+            \vdots \\
+            a_{101}
+          \end{bmatrix}
+          + x_2
+          \begin{bmatrix}
+            a_{12} \\
+            a_{22} \\
+            \vdots \\
+            a_{102}
+          \end{bmatrix}
+          \dots
+          + x_{10}
+          \begin{bmatrix}
+            a_{113} \\
+            a_{213} \\
+            \vdots \\
+            a_{1013}
+          \end{bmatrix}
+          =
+          \begin{bmatrix}
+            b_{1} \\
+            b_{2} \\
+            \vdots \\
+            b_{10}
+          \end{bmatrix}
+        \]
+        \par
+        Which shows that b can be expressed as a linear combination of Ax and thus has a solution and is consistent.
+        \vspace{0.5cm}
+        % (b)
+      \item TRUE or FALSE: Every column of the product AB is a lienar combination of the rows of B.
+        \vspace{0.5cm}
+        \par
+        TRUE: Expanding on the last question, Because b can be expressed as the linear combination of Ax in the more general case any matrix A that is $n \times m$ matrix can be multiplied by any matrix B $m \times z$ and we can express its output as the linear combination of the columns of matrix A and the rows of matrix B just by taking the elements of the second matrix B as scalors multiplied by the columns of the first matrix A and we are allowed to do this based on the defintion of matrix multiplication.
+        \vspace{0.5cm}
+        % (c)
+      \item TRUE or FALSE: Every row of the product AB is a linear combination of the rows of B.
+        \vspace{0.5cm}
+        \par
+        TRUE: Based of the previous two question and the defintion of matrix multiplication we can reveres the process by taking the elements of matrix a as scalors and multipling it by the rows of matrix B which shows that the row product of AB is the linear combination of the rows of B
+        \vspace{0.5cm}
+        % (d)
+      \item TRUE or FALSE: The size of the product AB is $10 \times 10$
+        \vspace{0.5cm}
+        \par
+        TRUE: When you multiply two matrices the product of those two matrices is the columns of the first matrix by the rows of the second matrix. If you take the matrix A $10 \times 13$ and B $13 \times 10$ and you multiply them togther you get a matrix that is $10 \times 10$
+        \vspace{0.5cm}
+        % (e)
+      \item TRUE or FALSE: The system Ax=b is consistent for every right hand side b if and only if the rank of A is 10.
+        \vspace{0.5cm}
+        \par
+        TRUE: Because the rank of A is 10 means that A is full rank which means there is no row of a that has all zeros. based on this we can construct an x such that we can find a solution of b thus making Ax=b a consistent equation.
+        \vspace{0.5cm}
+        % (f)
+      \item TRUE or FALSE: The system BAx=b has a unique solution if and only if A and B are full rank.
+        \vspace{0.5cm}
+        \par
+        TRUE: Because the full rank of B and A can only be 10 means that if B was not full rank there would be a case one of the column above 10 would be zero thus not allowing A solution.
+        \vspace{0.5cm}
+        % (g)
+      \item TRUE or FALSE: If the system Ax=b has a solution, it has infinitely many solution.
+        \vspace{0.5cm}
+        \par
+        \vspace{0.5cm}
+        % (h)
+      \item TRUE or FALSE: If the rank of A is 10, then A has 10 columns that are lienarly independent.
+        \vspace{0.5cm}
+        \par
+        \vspace{0.5cm}
+        % (i)
+      \item TRUE or FALSE: If A has 10 columns that are lienarly independent, then the rank of A is 10.
+        \vspace{0.5cm}
+        \par
+        \vspace{0.5cm}
+    \end{enumerate}
+
+  \item The following table showes the number of motor vehicles registratins in the US from 2004 to 2008.\
+
+    \begin{center}
+      \begin{tabular}{ c|ccccc } 
+        \hline
+        year & 2004 & 2005  & 2006 & 2007 & 2008\\ 
+        Number (in millions) & 237.2 & 241.2 & 244.2 & 247.4 & 248.2 \\ 
+        \hline
+      \end{tabular}
+    \end{center}
+
+    Assume that the growth is quadratic and find the least squares fit for the data. (Hint: let t be time with t = 4 represent the year 2004.)
+    \par
+    Your solution is graded half on the numerics and half on the quality of the presentation. You must explain, in complete English sentenses, what you do and why you do it.
+  \item We will imagine here that we are dealing with matrices of sizes in the millions but are displaying the technique on small matrices. you are given that A = LU for the folowing matrices
+    \[
+      L = 
+      \begin{bmatrix}
+        1.0 & 0.0 & 0.0 \\
+        0.6 & 1.0 & 0.0 \\
+        0.5 & 0.4 & 1.0 
+      \end{bmatrix}
+      U = 
+      \begin{bmatrix}
+        20.0 & 10.0 & 20.0 \\
+        0.0 & 15.0 & 2.0 \\
+        0.0 & 0.0 & 3.2 
+      \end{bmatrix}
+      b = 
+      \begin{bmatrix}
+        100 \\
+        120 \\
+        130 
+      \end{bmatrix}
+    \]
+    Solve Ax=b intelligently.
+    \par
+    Let A = LU Therefore we can replace A in the equation to be LUx=b.
+    \par
+    We can also let Ux=y and let Ly=b and by computing the second equation Ly=b we can substitude y in Ux=y and get are answer x
+    \begin{center}
+      Ly=b
+    \end{center}
+    \[
+      L = 
+      \begin{bmatrix}
+        1.0 & 0.0 & 0.0 \\
+        0.6 & 1.0 & 0.0 \\
+        0.5 & 0.4 & 1.0 
+      \end{bmatrix}
+      y = 
+      \begin{bmatrix}
+        y_1 \\
+        y_2 \\
+        y_3
+      \end{bmatrix}
+      b = 
+      \begin{bmatrix}
+        100 \\
+        120 \\
+        130 
+      \end{bmatrix}
+    \]
+    \[
+      \begin{bmatrix}
+        1.0 & 0.0 & 0.0 \\
+        0.6 & 1.0 & 0.0 \\
+        0.5 & 0.4 & 1.0 
+      \end{bmatrix}
+      \begin{bmatrix}
+        y_1 \\
+        y_2 \\
+        y_3
+      \end{bmatrix}
+      =
+      \begin{bmatrix}
+        100 \\
+        120 \\
+        130 
+      \end{bmatrix}
+    \]
+    \par
+    With this we can compute the linear equations for this matrix multiplication
+    \begin{equation}
+      1y_1+0y_2+0y_3 = 100
+    \end{equation}
+    \begin{equation}
+      0.6y_1+1y_2+0y_3 = 120
+    \end{equation}
+    \begin{equation}
+      0.5y_1+0.4y_2+1y_3 = 130
+    \end{equation}
+    \par
+    And By solving the system of equations we can see that $y_1 = 100$ and substituding $y_1$ in we get can see that $y_2 = 60$ and last we substitude $y_1 and y_2$ in the 3rd equation to get $y_3 = 56$
+    \par
+    Therefore we can construct y from this and we get
+    \begin{center}
+      \[
+        y = 
+        \begin{bmatrix}
+          100 \\
+          60 \\
+          56
+        \end{bmatrix}
+      \]
+    \end{center}
+    \par
+    With this why we can solve are final equation of Ux=y
+    \[
+      U = 
+      \begin{bmatrix}
+        20.0 & 10.0 & 20.0 \\
+        0.0 & 15.0 & 2.0 \\
+        0.0 & 0.0 & 3.2 
+      \end{bmatrix}
+      x = 
+      \begin{bmatrix}
+        x_1 \\
+        x_2 \\
+        x_3 
+      \end{bmatrix}
+      y = 
+      \begin{bmatrix}
+        100 \\
+        60 \\
+        56
+      \end{bmatrix}
+    \]
+    \[
+      \begin{bmatrix}
+        20.0 & 10.0 & 20.0 \\
+        0.0 & 15.0 & 2.0 \\
+        0.0 & 0.0 & 3.2 
+      \end{bmatrix}
+      \begin{bmatrix}
+        x_1 \\
+        x_2 \\
+        x_3 
+      \end{bmatrix}
+      =
+      \begin{bmatrix}
+        100 \\
+        60 \\
+        56
+      \end{bmatrix}
+    \]
+    \par
+    With this we can compute the linear equations for this matrix multiplication
+    \begin{equation}
+      20yx_1+10x_2+20x_3 = 100
+    \end{equation}
+    \begin{equation}
+      0x_1+15x_2+2x_3 = 60
+    \end{equation}
+    \begin{equation}
+      0x_1+0x_2+3.2x_3 = 56
+    \end{equation}
+    \par
+    By solving the system of equations we can see that $x_3 = 17.5$ and substituding $x_3$ in we can see that $x_2 = 1(2/3)$ and pluging in bothe we can get $x_1 = -13(1/3)$
+    \par
+    Therfore we can construct are solution x and we get
+    \[
+      x = 
+      \begin{bmatrix}
+        17.5 \\
+        1(2/3) \\
+        -13(1/3) 
+      \end{bmatrix}
+    \]
+  \item Prove that the set of $n \times n$ matrices that commute with a given, fixed, matrix B is a subspace of the $n \times n$ matrices.
+
+    \begin{center}
+      let S :=
+      \left
+      \{
+        \mbox
+        {
+          $A \in \mathbb{R}^{n \times n}|$
+          \[
+            AB = BA
+          \]
+        }
+        \right
+      \}
+      \par
+      Let B is a fixed $n \times n$ matrix
+    \end{center}
+    \par
+    To prove that the set S is a subspace of $\mathbb{R}^{n \times n}$ we must prove the following
+    \begin{enumerate}
+      \item The set is not empth
+      \item The set is closed under addition
+      \item The set is closed under scalor multiplication
+    \end{enumerate}
+
+    \begin{enumerate}
+      \item The set is not empty.
+        \par
+        Let A = 0 is in the $n \times n$ matrix set and 0B = 0 = 0B is comunitive therfore 0 is in the set S. Therefore S is not empty.
+      \item The Set is closed under additon
+        Let $\overline{A}$ and $\overline{\overline{A}}$ be in S given the following critera we must show that S is closed under addition
+        \begin{center}
+          \begin{equation}
+            $\overline{A}$B = B$\overline{A}$
+          \end{equation}
+          \begin{equation}
+            $\overline{\overline{A}}$B = B$\overline{\overline{A}}$
+          \end{equation}
+        \end{center}
+        \par
+        Now consider that $\overline{A}$ + $\overline{\overline{A}}$ and in order to show that it is closed under addtion we need to show that 
+        \par 
+        ($\overline{A}$ + $\overline{\overline{A}}$)B = B($\overline{A}$ + $\overline{\overline{A}}$)
+        \par
+        If we add equation 1 to equation 2 we get the following
+        \par
+        $\overline{A}$B + $\overline{\overline{A}}$B = B$\overline{A}$ + B$\overline{\overline{A}}$ \Rightarrow 
+        ($\overline{A}$ + $\overline{\overline{A}}$)B = B($\overline{A}$ + $\overline{\overline{A}}$)
+        \par
+        Therefore S is closed under addtion
+      \item The Set is closed under scalor multiplication
+        \par
+        Let $\overline{A}$ be in S given the following critera we must show that S is closed under scalor multiplication
+        \begin{center}
+          $\overline{A}B = B\overline{A}$
+        \end{center}
+        Now consider $\alpha\overline{A}$ for any scalor $\alpha$ and in order to show that it is closed under multiplication we must fulfill the requierments
+        \begin{center}
+          $(\alpha\overline{A})B = \alpha(\overline{A}B) = \alpha(B\overline{A}) = B(\alpha\overline{A})$
+        \end{center}
+        Based on this we can say that S is closed under scalor multiplication
+    \end{enumerate}
+    \par
+    Given that all three requierments are meet we can say that S is a subspace of $\mathbb{R}^{n \times n}$ matrices
+  \item Assume that matrix A is a fixed $2 \times 3$ matrix. Prove that the following set is a subset of $\mathbb{R}^3$ but is not a subspace of $\mathbb{R}^3$
+    \begin{center}
+      \left
+      \{
+        \mbox
+        {
+          $x \in \mathbb{R}^3|$
+          \[
+            Ax = 
+            \begin{bmatrix}
+              1 \\
+              2 
+            \end{bmatrix}
+          \]
+        }
+        \right
+      \}
+    \end{center}
+    \vspace{0.5cm}
+
+    A is a fixed size of $2 \times 3$ and 
+    let S=
+    \begin{center}
+      \left
+      \{
+        \mbox
+        {
+          $x \in \mathbb{R}^3|$
+          \[
+            Ax = 
+            \begin{bmatrix}
+              1 \\
+              2 
+            \end{bmatrix}
+          \]
+        }
+        \right
+      \}
+    \end{center}
+    \par
+    For this set to be a subset of $\mathbb{R}^3}$ it must hold for the following
+    \begin{itemize}
+      \item The set is not empth
+      \item The set is closed under addition
+      \item The set is closed under scalor multiplication
+    \end{itemize}
+    To prove that this set is not a subspace we must prove that one the these conditions do not hold.
+    \par
+    We will prove that the set is not closed under additon. To do this we will find a counter example of this.
+    \par
+    Let $\overline{x}$ $\overline{\overline{x}}$ be in S
+    \[
+      A\overline{x} = 
+      \begin{bmatrix}
+        1 \\
+        2
+      \end{bmatrix}
+      A\overline{\overline{x}} = 
+      \begin{bmatrix}
+        1 \\
+        2
+      \end{bmatrix}
+    \]
+    \par
+    Because we are testing if it is closed under additon we should be able to add $\overline{x}$ and $\overline{\overline{x}}$ togther and get something that is also in S.
+    \[
+      A(\overline{x}+\overline{\overline{x}}) = 
+      A\overline{x}+A\overline{\overline{x}} = 
+      \begin{bmatrix}
+        1 \\
+        2
+      \end{bmatrix}
+      +
+      \begin{bmatrix}
+        1 \\
+        2
+      \end{bmatrix}
+      =
+      \begin{bmatrix}
+        2 \\
+        4
+      \end{bmatrix}
+      \neq
+      \begin{bmatrix}
+        1 \\
+        2
+      \end{bmatrix}
+    \]
+    Because the matrix
+    \[
+      \begin{bmatrix}
+        1 \\
+        2
+      \end{bmatrix}
+      \neq
+      \begin{bmatrix}
+        2 \\
+        4
+      \end{bmatrix}
+    \]
+    means that this matrix is not closed under addition because $\overline{x}$ + $\overline{\overline{x}}$ is not is S.
+    \par
+    Therefore S is not closed under addition and is not a subspace of $\mathbb{R}^3$
+  \item Prove whether the following set is lenearly independent.
+    \begin{center}
+      S =
+      \left
+      \{
+        \mbox
+        {
+          \[
+            \begin{bmatrix}
+              2 & 1 \\
+              0 & 1 
+            \end{bmatrix}
+            ,
+            \begin{bmatrix}
+              3 & 0\\
+              2 & 1
+            \end{bmatrix}
+            ,
+            \begin{bmatrix}
+              1 & 0\\
+              2 & 0
+            \end{bmatrix}
+          \]
+        }
+        \right
+      \}
+    \end{center}
+    \par
+    To be linearly independent means that there is only one solution to the following set.
+    \par
+    There fore the follwing must hold
+    \[
+      \alpha_1
+      \begin{bmatrix}
+        2 & 1 \\
+        0 & 1 
+      \end{bmatrix}
+      + \alpha_2
+      \begin{bmatrix}
+        3 & 0\\
+        2 & 1
+      \end{bmatrix}
+      + \alpha_3
+      \begin{bmatrix}
+        1 & 0\\
+        2 & 0
+      \end{bmatrix}
+      = 0
+    \]
+    \par
+    Where $\alpha_1 = \alpha_2 = \alpha_3 = 0$
+    By showing that all three $\alpha$ are 0 means that this set is lenearly independent.
+    \par
+    To show this we must solve the equation
+    \[
+      \alpha_1
+      \begin{bmatrix}
+        2 & 1 \\
+        0 & 1 
+      \end{bmatrix}
+      + \alpha_2
+      \begin{bmatrix}
+        3 & 0\\
+        2 & 1
+      \end{bmatrix}
+      + \alpha_3
+      \begin{bmatrix}
+        1 & 0\\
+        2 & 0
+      \end{bmatrix}
+      = 0
+      \Rightarrow
+    \]
+    \[
+      \begin{bmatrix}
+        2\alpha_1 & \alpha_1 \\
+        0 & \alpha_1 
+      \end{bmatrix}
+      +
+      \begin{bmatrix}
+        3\alpha_2 & 0\\
+        2\alpha_2 & \alpha_2
+      \end{bmatrix}
+      +
+      \begin{bmatrix}
+        \alpha_3 & 0\\
+        2\alpha_3 & 0
+      \end{bmatrix}
+      = 0
+    \]
+    With this we can construct 4 linear equation
+    \begin{equation}
+      2\alpha_1 + 3\alpha_2 + \alpha_3 &=  0
+    \end{equation}
+    \begin{equation}
+      \alpha_1 + 0 + 0 &=  0 
+    \end{equation}
+    \begin{equation}
+      0 + 2\alpha_2 + 2\alpha_3 &=  0
+    \end{equation}
+    \begin{equation}
+      \alpha_1 + \alpha_2 + 0 &=  0
+    \end{equation}
+    Solving theses equations we can get what &\alpha_1, \alpha_2,$ and $\alpha_3$ are
+    \setcounter{equation}{0}
+    \begin{equation}
+      2\alpha_1 + 3\alpha_2 + \alpha_3 &= 0 \Rightarrow 2(0)+3(0)+\alpha_3= 0 \Rightarrow 0+0+0=0
+    \end{equation}
+    \begin{equation}
+      \alpha_1 + 0 + 0 &=  0 \Rightarrow \alpha_1 = 0
+    \end{equation}
+    \begin{equation}
+      0 + 2\alpha_2 + 2\alpha_3 &=  0 \Rightarrow 2(0)+2\alpha_3=0\Rightarrow \alpha_3 = 0
+    \end{equation}
+    \begin{equation}
+      \alpha_1 + \alpha_2 + 0 &=  0 \Rightarrow 0 + \alpha_2 + 0 = 0 \Rightarrow \alpha_2 = 0
+    \end{equation}
+
+    \begin{align*} 
+      \alpha_1 = 0 \\ 
+      \alpha_2 = 0 \\ 
+      \alpha_3 = 0 \\
+    \end{align*}
+    \begin{center}
+      $\alpha_1 = \alpha_2 = \alpha_3 = 0$
+    \end{center}
+    \par
+    Therefore because &\alpha_1, \alpha_2,$ and $\alpha_3$ are all equal to zero means that the set S is linear independent and there is only solution is when $\alpha_1 = \alpha_2 = \alpha_3 = 0$
+\end{enumerate}
+\end{document}
